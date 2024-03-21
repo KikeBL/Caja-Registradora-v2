@@ -1,9 +1,11 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+import Card from "@/components/Card.astro";
 ---
 
 <Layout title="Pagina principal" description="Listado de productos">
-	<main>
+	<main class="h-[90vh] bg-main-pink top-0">
 		<!-- <Productos /> -->
+		<Card />
 	</main>
 </Layout>
