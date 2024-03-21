@@ -1,3 +1,22 @@
 {
-  "extends": "astro/tsconfigs/strict"
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": "/Users/enriquebarreroligero/Proyectos/Dulces Remedios/Calculadora-astro",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/layouts": [
+        "src/layouts/*"
+      ],
+      "@/components": [
+        "src/components/*"
+      ],
+      "@/components/icons": [
+        "src/components/icons/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }
