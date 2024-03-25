@@ -1,11 +1,13 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Card from "@/components/Card.astro";
+import { Product } from "@/components/Product.jsx";
+
+import { getAllProducts } from "src/scripts/notion";
+const products = await getAllProducts();
 ---
 
 <Layout title="Pagina principal" description="Listado de productos">
 	<main class="h-[90vh] bg-main-pink top-0">
-		<!-- <Productos /> -->
-		<Card />
+		{products.map((cake) => <Product product={cake} client:load />)}
 	</main>
 </Layout>
