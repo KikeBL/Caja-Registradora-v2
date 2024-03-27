@@ -7,12 +7,12 @@ export function Product({ product }) {
 
     const removeFromCartClick = event => {
         event.stopPropagation()
-        removeFromCart(product.id)
+        removeFromCart(product)
     }
 
     return (
         <div className={"m-2 h-28 bg-white border rounded-xl shadow-sm flex dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] " + (currentCount > 0 ? 'border-dark-pink' : '')}
-            onClick={() => addToCart(product.id)}>
+            onClick={() => addToCart(product)}>
             <div className="flex-shrink-0 relative w-28 overflow-hidden rounded-s-xl rounded-se-none max-w-xs">
                 <img
                     className="size-full absolute top-0 start-0 object-cover"

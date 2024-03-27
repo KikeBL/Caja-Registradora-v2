@@ -2,29 +2,33 @@ import { create } from "zustand";
 
 export const useProductStore = create((set) => ({
     cart: [],
-    
-    addToCart: id =>
+    total: 0,
+
+    addToCart: p =>
         set(state => {
-            const isPresent = state.cart.find(product => product.id === id)
+            const isPresent = state.cart.find(product => product.id === p.id)
             if (!isPresent) {
                 return {
                     ...state,
-                    cart: [...state.cart, { id, cantidad: 1 }]
+                    cart: [...state.cart, { id: p.id, cantidad: 1, price: p.price }],
+                    total: state.total + p.price
                 }
             }
 
             const updatedCart = state.cart.map(product =>
-                product.id === id ? { ...product, cantidad: product.cantidad + 1 } : product
+                product.id === p.id ? { ...product, cantidad: product.cantidad + 1 } : product
             )
+
             return {
                 ...state,
-                cart: updatedCart
+                cart: updatedCart,
+                total: state.total + p.price
             }
         }),
 
-    removeFromCart: id =>
+    removeFromCart: p =>
         set(state => {
-            const isPresent = state.cart.find(product => product.id === id)
+            const isPresent = state.cart.find(product => product.id === p.id)
             if (!isPresent) {
                 return {
                     ...state
@@ -32,23 +36,16 @@ export const useProductStore = create((set) => ({
             }
 
             const updatedCart = state.cart
-                .map(product => (product.id === id ? { ...product, cantidad: Math.max(product.cantidad - 1, 0) } : product))
+                .map(product => (product.id === p.id ? { ...product, cantidad: Math.max(product.cantidad - 1, 0) } : product))
                 .filter(product => product.cantidad > 0);
 
             return {
                 ...state,
-                cart: updatedCart
+                cart: updatedCart,
+                total: state.total - p.price
             };
 
         })
 
-}),
-    {
-        computed: {
-            // Recomputes every time property1 or property2 changes.
-            total() {
-                return this.cart?.map(product => product.cantidad * product.price).reduce((acc, curr) => acc + curr, 0)
-            }
-        }
-    }
+})
 )

@@ -5,6 +5,8 @@ interface Props {
 }
 
 const { description, title } = Astro.props;
+
+import { Menu } from "@/components/Menu.jsx";
 ---
 
 <!doctype html>
@@ -21,7 +23,11 @@ const { description, title } = Astro.props;
 		<slot />
 	</body>
 	<footer class="fixed bottom-0 w-full">
-		<div class="flex h-[10vh] bg-slate-400 items-center"></div>
+		<div class="h-[10vh] items-center">
+			<div class="h-full w-full bg-white bg-[radial-gradient(#7D4259_1px,transparent_1px)] [background-size:16px_16px] border-t border-dark-pink rounded-t-md shadow-sm">
+				<Menu client:load />
+			</div>
+		</div>
 	</footer>
 </html>
 <style is:global>
