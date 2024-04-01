@@ -7,6 +7,7 @@ interface Props {
 const { description, title } = Astro.props;
 
 import { Menu } from "@/components/Menu.jsx";
+import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -18,44 +19,47 @@ import { Menu } from "@/components/Menu.jsx";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
 	<body>
 		<slot />
-	</body>
-	<footer class="fixed bottom-0 w-full">
-		<div class="h-[10vh] items-center">
-			<div class="h-full w-full bg-white bg-[radial-gradient(#7D4259_1px,transparent_1px)] [background-size:16px_16px] border-t border-dark-pink rounded-t-md shadow-sm">
-				<Menu client:load />
+		<footer class="fixed bottom-0 w-full">
+			<div class="h-[10vh] items-center">
+				<div
+					class="h-full w-full bg-white bg-[radial-gradient(#7D4259_1px,transparent_1px)] [background-size:16px_16px] border-t border-dark-pink rounded-t-sm shadow-sm"
+				>
+					<Menu client:load />
+				</div>
 			</div>
-		</div>
-	</footer>
+		</footer>
+		<style is:global>
+			:root {
+				--accent: 136, 58, 234;
+				--accent-light: 224, 204, 250;
+				--accent-dark: 49, 10, 101;
+				--accent-gradient: linear-gradient(
+					45deg,
+					rgb(var(--accent)),
+					rgb(var(--accent-light)) 30%,
+					white 60%
+				);
+			}
+			html {
+				font-family: system-ui, sans-serif;
+				background: #fef9fa;
+				background-size: 224px;
+			}
+			code {
+				font-family:
+					Menlo,
+					Monaco,
+					Lucida Console,
+					Liberation Mono,
+					DejaVu Sans Mono,
+					Bitstream Vera Sans Mono,
+					Courier New,
+					monospace;
+			}
+		</style>
+	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #fef9fa;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

@@ -8,6 +8,62 @@ import { Tiquet } from "@/components/Tiquet.jsx";
     description="productos adquiridos por el cliente"
 >
     <main>
-        <Tiquet />
+        <div
+            class="h-[100vh] w-full bg-main-pink bg-[radial-gradient(#bbb_1px,transparent_1px)] [background-size:16px_16px]"
+        >
+            <div class="bg-white recorte pb-[50%] mx-3">
+                <img
+                    src="/logo.webp"
+                    alt="Logo dulces remedios"
+                    class="mx-auto w-48"
+                />
+                <Tiquet />
+            </div>
+        </div>
     </main>
 </NoMenuLayout>
+
+<style>
+    .recorte {
+        font-family: ticketing;
+
+        clip-path: polygon(
+            0 0%,
+            0% 76%,
+            3% 75%,
+            6% 75.6%,
+            9% 75%,
+            12% 75.6%,
+            15% 75%,
+            18% 75.6%,
+            21% 75%,
+            24% 75.6%,
+            27% 75%,
+            30% 75.6%,
+            33% 75%,
+            36% 75.6%,
+            39% 75%,
+            42% 75.6%,
+            45% 75%,
+            48% 76%,
+            51% 75%,
+            54% 75.6%,
+            57% 75%,
+            60% 75.6%,
+            63% 75%,
+            66% 75.6%,
+            69% 75%,
+            72% 75.6%,
+            75% 75%,
+            78% 76%,
+            81% 75%,
+            84% 75.6%,
+            87% 75%,
+            90% 75.6%,
+            93% 74.8%,
+            97% 75.3%,
+            100% 76%,
+            100% 0%
+        );
+    }
+</style>

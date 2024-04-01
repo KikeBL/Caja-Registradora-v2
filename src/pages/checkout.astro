@@ -1,5 +1,7 @@
 ---
 import NoMenuLayout from "@/layouts/NoMenuLayout.astro";
+
+import { Calc } from "@/components/Calc.jsx";
 ---
 
 <NoMenuLayout
@@ -7,6 +9,10 @@ import NoMenuLayout from "@/layouts/NoMenuLayout.astro";
     description="productos adquiridos por el cliente"
 >
     <main>
-        Hola mundo
+        <div
+            class="h-[100vh] w-full bg-white bg-[radial-gradient(#bbb_1px,transparent_1px)] [background-size:16px_16px]"
+        >
+            <Calc client:load />
+        </div>
     </main>
 </NoMenuLayout>
