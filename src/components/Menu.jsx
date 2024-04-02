@@ -2,6 +2,7 @@ import { useProductStore } from "@/store/productStore"
 
 export function Menu() {
     const total = useProductStore(state => state.total)
+    const resetHandle = useProductStore(state => state.reset)
 
     return (
         <nav className="flex w-full text-dark-pink pt-4 z-20">
@@ -14,13 +15,18 @@ export function Menu() {
                     </a>
                 </div>
             </div>
-            <div className="flex-1 flex text-2xl -mt-2">
+            <div className="flex-1 flex text-2xl">
                 <div className="mx-auto">
                     <a href="/checkout">
                         <div className="bg-white p-1">
                             {total?.toFixed(2)}€
                         </div>
                     </a>
+                </div>
+                <div className="mx-auto">
+                    <div className="bg-white p-2 border border-dark-green rounded-full text-dark-green" onClick={resetHandle}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-restore"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3.06 13a9 9 0 1 0 .49 -4.087" /><path d="M3 4.001v5h5" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                    </div>
                 </div>
             </div>
             <div className="flex-1 flex">

@@ -7,8 +7,12 @@ export default {
 				'main-pink': '#fef9fa',
 				'dark-pink': '#7b3f59',
 				'dark-green': '#3E7A41',
-				'darker-pink': '#562037',
+				'darker-pink': '#562037'
 			},
+
+			fontFamily: {
+				'ticket': ['ticketing', 'monospace']
+			}
 		},
 	},
 	plugins: [],

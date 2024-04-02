@@ -9,15 +9,30 @@ import { Tiquet } from "@/components/Tiquet.jsx";
 >
     <main>
         <div
-            class="h-[100vh] w-full bg-main-pink bg-[radial-gradient(#bbb_1px,transparent_1px)] [background-size:16px_16px]"
+            class="h-full w-full bg-dark-pink bg-[radial-gradient(#bbb_1px,transparent_1px)] [background-size:16px_16px]"
         >
-            <div class="bg-white recorte pb-[50%] mx-3">
+            <div class="bg-white recorte pb-[10%] mx-3">
                 <img
                     src="/logo.webp"
                     alt="Logo dulces remedios"
                     class="mx-auto w-48"
                 />
-                <Tiquet />
+                <h1 class="font-ticket text-center text-lg uppercase">
+                    Dulces Remedios
+                </h1>
+                <h2 class="font-ticket text-center text-sm uppercase">
+                    Av Marques de Aracena, 94
+                </h2>
+                <h2 class="font-ticket text-center text-sm uppercase">
+                    21360 El Repilado (Jabugo)
+                </h2>
+                <h2 class="font-ticket text-center text-sm uppercase">
+                    Teléfono: 663 18 39 31
+                </h2>
+                <h2 class="font-ticket text-center text-sm uppercase">
+                    Número: {Date.now()} - 0001
+                </h2>
+                <Tiquet client:load />
             </div>
         </div>
     </main>
@@ -29,40 +44,40 @@ import { Tiquet } from "@/components/Tiquet.jsx";
 
         clip-path: polygon(
             0 0%,
-            0% 76%,
-            3% 75%,
-            6% 75.6%,
-            9% 75%,
-            12% 75.6%,
-            15% 75%,
-            18% 75.6%,
-            21% 75%,
-            24% 75.6%,
-            27% 75%,
-            30% 75.6%,
-            33% 75%,
-            36% 75.6%,
-            39% 75%,
-            42% 75.6%,
-            45% 75%,
-            48% 76%,
-            51% 75%,
-            54% 75.6%,
-            57% 75%,
-            60% 75.6%,
-            63% 75%,
-            66% 75.6%,
-            69% 75%,
-            72% 75.6%,
-            75% 75%,
-            78% 76%,
-            81% 75%,
-            84% 75.6%,
-            87% 75%,
-            90% 75.6%,
-            93% 74.8%,
-            97% 75.3%,
-            100% 76%,
+            0% 99%,
+            3% 98%,
+            6% 98.6%,
+            9% 98%,
+            12% 98.6%,
+            15% 98%,
+            18% 98.6%,
+            21% 98%,
+            24% 98.6%,
+            27% 98%,
+            30% 98.6%,
+            33% 98%,
+            36% 98.6%,
+            39% 98%,
+            42% 98.6%,
+            45% 98%,
+            48% 99%,
+            51% 98%,
+            54% 98.6%,
+            57% 98%,
+            60% 98.6%,
+            63% 98%,
+            66% 98.6%,
+            69% 98%,
+            72% 98.6%,
+            75% 98%,
+            78% 99%,
+            81% 98%,
+            84% 98.6%,
+            87% 98%,
+            90% 98.6%,
+            93% 97.8%,
+            97% 98.3%,
+            100% 99%,
             100% 0%
         );
     }
