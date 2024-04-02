@@ -1,13 +1,24 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Product } from "@/components/Product.jsx";
+import { Product } from "@/components/Product.tsx";
 
 import { getAllProducts } from "src/scripts/notion";
-const products = await getAllProducts();
+
+interface Product {
+	id: string;
+	producto: string;
+	cover: string | undefined;
+	rename: string;
+	price: number;
+	allergens: string[];
+	cantidad: number;
+}
+
+const products:Product[] = await getAllProducts();
 ---
 
 <Layout title="Pagina principal" description="Listado de productos">
 	<main class="bg-main-pink top-0 mb-[11vh]">
-		{products.map((cake) => <Product product={cake} client:load />)}
+		{products.map((product) => <Product product={product} client:load />)}
 	</main>
 </Layout>

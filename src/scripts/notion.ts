@@ -1,14 +1,16 @@
 import { Client } from "@notionhq/client";
 
-export type cake = {
+export type product = {
+    id: string;
     producto: string;
-    cover: string;
+    cover: string | undefined;
     rename: string;
     price: number;
     allergens: string[];
-};
+    cantidad: number;
+}
 
-export async function getAllProducts(): Promise<cake[]> {
+export async function getAllProducts(): Promise<product[]> {
     const notion = new Client({ auth: import.meta.env.NOTION_TOKEN });
 
     //NOTE - Listado de tartas
@@ -62,8 +64,8 @@ export async function saveSell() {
                 producto: page.properties.Producto.title[0].plain_text,
                 cover: page.cover ? (page.cover.external ? page.cover.external.url : page.cover.file.url) : null,
                 rename: page.properties.Rename.rich_text[0] ? page.properties.Rename.rich_text[0].plain_text : "",
-                price: page.properties["PVP Mercadillo"] ? page.properties["PVP Mercadillo"].number : "Consultar",
-                allergens: page.properties.Allergens.multi_select.map((x) => { return x.name }),
+                price: page.properties["PVP Mercadillo"] ? page.properties["PVP Mercadillo"].number : 0,
+                allergens: page.properties.Allergens.multi_select.map((x:any) => { return x.name }),
                 cantidad: 0
             };
         })

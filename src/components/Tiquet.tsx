@@ -2,14 +2,24 @@ import { useProductStore } from "@/store/productStore"
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
+interface Product {
+    id: string;
+    producto: string;
+    cover: string | undefined;
+    rename: string;
+    price: number;
+    allergens: string[];
+    cantidad: number;
+}
+
 export function Tiquet() {
-    const cart = useProductStore(state => state.cart)
+    const cart:Product[] = useProductStore(state => state.cart)
     const total = useProductStore(state => state.total)
 
     const [nombreCliente, setNombreCliente] = useState("Enrique");
-    const onNameChange = (event) => { setNombreCliente(event) }
+    const onNameChange = (event:any) => { setNombreCliente(event) }
     const [emailCliente, setEmailCliente] = useState("enriquebarrerol@gmail.com");
-    const onEmailChange = (event) => { setEmailCliente(event) }
+    const onEmailChange = (event:any) => { setEmailCliente(event) }
 
     const [showMail, setShowMail] = useState(false)
     const showMailHandle = () => {

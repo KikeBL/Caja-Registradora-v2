@@ -1,11 +1,21 @@
 import { useProductStore } from "@/store/productStore"
 
-export function Product({ product }) {
+interface Product {
+    id: string;
+    producto: string;
+    cover: string | undefined;
+    rename: string;
+    price: number;
+    allergens: string[];
+    cantidad: number;
+}
+
+export function Product({ product }: { product: Product }) {
     const addToCart = useProductStore((state) => state.addToCart)
     const removeFromCart = useProductStore((state) => state.removeFromCart)
-    const currentCount = useProductStore(state => state.cart.find(p => p.id === product.id)?.cantidad)
+    const currentCount = useProductStore(state => state.cart.find((p:Product) => p.id === product.id)?.cantidad)
 
-    const removeFromCartClick = event => {
+    const removeFromCartClick = (event:any) => {
         event.stopPropagation()
         removeFromCart(product)
     }

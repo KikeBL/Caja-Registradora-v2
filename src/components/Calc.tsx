@@ -1,18 +1,25 @@
 import { useProductStore } from "@/store/productStore"
 import { useState } from 'react';
 
+interface Change {
+    coin: number;
+    count: number;
+}
+
 export function Calc() {
-    const total = useProductStore(state => state.total)
+    
+
+    const total:number = useProductStore(state => state.total)
 
     const [cliente, setCliente] = useState(0);
-    const onValueChange = (event) => { setCliente(event) }
+    const onValueChange = (event:any) => { setCliente(event) }
 
     const [showResults, setShowResults] = useState(false)
 
     const returnValue = () => {
         let coins = [10000, 5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
         let devolver = cliente * 100 - total * 100;
-        let devolverCoins = [];
+        let devolverCoins: Change[] = [];
 
         coins.forEach(coin => {
             let coinCount = Math.floor(devolver / coin);
@@ -52,7 +59,7 @@ export function Calc() {
                 }
             </div>
             <div className={"flex w-full " + ((cliente - total) >= 0 ? 'text-dark-green' : 'text-dark-pink')}>
-                <span className="bg-white p-1 mx-auto flex text-2xl font-bold">{Math.abs((cliente - total).toFixed(2))}€</span>
+                <span className="bg-white p-1 mx-auto flex text-2xl font-bold">{Math.abs(parseFloat((cliente - total).toFixed(2)))}€</span>
             </div>
             <div className="flex flex-wrap w-full pt-6 items-center justify-center">
                 {
@@ -71,7 +78,7 @@ export function Calc() {
                 className="w-4/5 text-center text-2xl font-bold text-dark-pink bg-white border rounded-sm mx-auto mt-6"
                 type='number'
                 step="0.1"
-                autoFocus="autofocus"
+                autoFocus={true}
                 pattern="(?<=^| )\d+(\.\d+)?(?=$| )"
                 inputMode="decimal"
                 onChange={(event) =>
