@@ -58,7 +58,7 @@ export async function saveSell() {
 
     //NOTE - Response formatter
     const events = pages.results
-        .map((page) => {
+        .map((page:any) => {
             return {
                 id: page.id,
                 producto: page.properties.Producto.title[0].plain_text,

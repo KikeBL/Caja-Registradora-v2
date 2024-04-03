@@ -1,4 +1,4 @@
-import { useProductStore } from "@/store/productStore"
+import { useProductStore } from "../store/productStore"
 import { useState } from 'react';
 
 interface Change {
@@ -7,9 +7,7 @@ interface Change {
 }
 
 export function Calc() {
-    
-
-    const total:number = useProductStore(state => state.total)
+    const total:number = useProductStore((state:any) => state.total)
 
     const [cliente, setCliente] = useState(0);
     const onValueChange = (event:any) => { setCliente(event) }

@@ -1,8 +1,8 @@
-import { useProductStore } from "@/store/productStore"
+import { useProductStore } from "../store/productStore"
 
 export function Menu() {
-    const total = useProductStore(state => state.total)
-    const resetHandle = useProductStore(state => state.reset)
+    const total = useProductStore((state:any) => state.total)
+    const resetHandle = useProductStore((state: any) => state.reset)
 
     return (
         <nav className="flex w-full text-dark-pink pt-4 z-20">

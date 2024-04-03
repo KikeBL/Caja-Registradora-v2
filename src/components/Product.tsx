@@ -1,4 +1,4 @@
-import { useProductStore } from "@/store/productStore"
+import { useProductStore } from "../store/productStore"
 
 interface Product {
     id: string;
@@ -11,9 +11,9 @@ interface Product {
 }
 
 export function Product({ product }: { product: Product }) {
-    const addToCart = useProductStore((state) => state.addToCart)
-    const removeFromCart = useProductStore((state) => state.removeFromCart)
-    const currentCount = useProductStore(state => state.cart.find((p:Product) => p.id === product.id)?.cantidad)
+    const addToCart = useProductStore((state:any) => state.addToCart)
+    const removeFromCart = useProductStore((state:any) => state.removeFromCart)
+    const currentCount = useProductStore((state: any) => state.cart.find((p:Product) => p.id === product.id)?.cantidad)
 
     const removeFromCartClick = (event:any) => {
         event.stopPropagation()

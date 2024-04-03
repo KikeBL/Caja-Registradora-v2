@@ -1,4 +1,4 @@
-import { useProductStore } from "@/store/productStore"
+import { useProductStore } from "../store/productStore"
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
@@ -13,8 +13,8 @@ interface Product {
 }
 
 export function Tiquet() {
-    const cart:Product[] = useProductStore(state => state.cart)
-    const total = useProductStore(state => state.total)
+    const cart: Product[] = useProductStore((state: any) => state.cart)
+    const total = useProductStore((state: any) => state.total)
 
     const [nombreCliente, setNombreCliente] = useState("Enrique");
     const onNameChange = (event:any) => { setNombreCliente(event) }
