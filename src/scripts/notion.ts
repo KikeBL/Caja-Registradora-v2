@@ -27,14 +27,14 @@ export async function getAllProducts(): Promise<product[]> {
 
     //NOTE - Response formatter
     const events = pages.results
-        .map((page) => {
+        .map((page: any) => {
             return {
                 id: page.id,
                 producto: page.properties.Producto.title[0].plain_text,
                 cover: page.cover ? (page.cover.external ? page.cover.external.url : page.cover.file.url) : null,
                 rename: page.properties.Rename.rich_text[0] ? page.properties.Rename.rich_text[0].plain_text : "",
                 price: page.properties["PVP Mercadillo"] ? page.properties["PVP Mercadillo"].number : "Consultar",
-                allergens: page.properties.Allergens.multi_select.map((x) => { return x.name }),
+                allergens: page.properties.Allergens.multi_select.map((x: any) => { return x.name }),
                 cantidad: 0
             };
         })
@@ -58,14 +58,14 @@ export async function saveSell() {
 
     //NOTE - Response formatter
     const events = pages.results
-        .map((page:any) => {
+        .map((page: any) => {
             return {
                 id: page.id,
                 producto: page.properties.Producto.title[0].plain_text,
                 cover: page.cover ? (page.cover.external ? page.cover.external.url : page.cover.file.url) : null,
                 rename: page.properties.Rename.rich_text[0] ? page.properties.Rename.rich_text[0].plain_text : "",
                 price: page.properties["PVP Mercadillo"] ? page.properties["PVP Mercadillo"].number : 0,
-                allergens: page.properties.Allergens.multi_select.map((x:any) => { return x.name }),
+                allergens: page.properties.Allergens.multi_select.map((x: any) => { return x.name }),
                 cantidad: 0
             };
         })
