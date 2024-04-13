@@ -41,7 +41,7 @@ export function Calc() {
                 <span className="bg-white p-1 mx-auto flex">IMPORTE</span>
             </div>
             <div className="flex w-full text-dark-pink">
-                <span className="bg-white p-1 mx-auto flex text-xl">{total.toFixed(2)}€</span>
+                <span className="bg-white p-1 mx-auto flex text-xl">{total?.toFixed(2)}€</span>
             </div>
             <div className="flex w-full pt-6">
                 <span className="bg-white p-1 mx-auto flex">ENTREGADO</span>
@@ -60,7 +60,7 @@ export function Calc() {
                 }
             </div>
             <div className={"flex w-full " + ((cliente - total) >= 0 ? 'text-dark-green' : 'text-dark-pink')}>
-                <span className="bg-white p-1 mx-auto flex text-2xl font-bold">{Math.abs(parseFloat((cliente - total).toFixed(2)))}€</span>
+                <span className="bg-white p-1 mx-auto flex text-2xl font-bold">{Math.abs(parseFloat((cliente - total)?.toFixed(2)))}€</span>
             </div>
             <div className="flex flex-wrap w-full pt-6 items-center justify-center">
                 {
