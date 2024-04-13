@@ -1,6 +1,6 @@
 import { useProductStore } from "../store/productStore";
-import { saveSell } from "../scripts/notion";
 import { db, desc, Sells } from 'astro:db';
+import { Client } from "@notionhq/client";
 
 interface Product {
     id: string;
@@ -24,7 +24,7 @@ export function Menu() {
         let date = new Date()
 
         let i = result[0].id + 1
-        await db.insert(Sells).values({ id: 6 });
+        await db.insert(Sells).values({ id: i });
 
         const data = JSON.stringify(cart)
         const total = useProductStore((state: any) => state.total)
@@ -94,7 +94,16 @@ export function Menu() {
             },
         }
 
-        await saveSell(JSON.stringify(page))
+        const notion = new Client({ auth: import.meta.env.NOTION_TOKEN });
+
+        //NOTE - Listado de tartas
+        const newPage = await notion.pages.create({
+            parent: {
+                database_id: import.meta.env.NOTION_VENTAS_DATABASE_ID,
+            },
+            properties: page
+        });
+
         useProductStore((state: any) => state.reset)
     }
 
