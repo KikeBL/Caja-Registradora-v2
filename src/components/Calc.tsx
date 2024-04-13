@@ -2,27 +2,30 @@ import { useProductStore } from "../store/productStore"
 import { useState } from 'react';
 
 interface Change {
-    coin: number;
+    coin: string;
     count: number;
 }
 
 export function Calc() {
-    const total:number = useProductStore((state:any) => state.total)
+    const total: number = useProductStore((state: any) => state.total)
 
     const [cliente, setCliente] = useState(0);
-    const onValueChange = (event:any) => { setCliente(event) }
+    const onValueChange = (event: any) => { setCliente(event) }
 
     const [showResults, setShowResults] = useState(false)
 
+    const humanCoins: any = { 0.01: "1 cent", 0.02: "2 cent", 0.05: "5 cent", 0.1: "10 cent", 0.2: "20 cent", 0.5: "50 cent", 1: "1€", 2: "2€", 5: "5€", 10: "10€", 20: "20€", 50: "50€", 100: "100€" }
+
     const returnValue = () => {
         let coins = [10000, 5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
-        let devolver = cliente * 100 - total * 100;
+        let devolver = Math.ceil(cliente * 100 - total * 100);
         let devolverCoins: Change[] = [];
+        let coinCount = 0;
 
         coins.forEach(coin => {
-            let coinCount = Math.floor(devolver / coin);
-            devolverCoins.push({ coin: coin, count: coinCount });
-            devolver -= coin * coinCount;
+            coinCount = Math.floor(devolver / coin);
+            devolverCoins.push({ coin: humanCoins[(coin / 100)], count: coinCount });
+            devolver = coinCount > 0 ? (devolver - (coin * coinCount)) : devolver;
         });
 
         return devolverCoins
@@ -65,7 +68,7 @@ export function Calc() {
                         returnValue().map((coin, index) => {
                             if (coin.count > 0) {
                                 return (
-                                    <span key={index} className="bg-white  border border-dark-pink p-2 text-xs mx-1 my-1">{coin.count} x {coin.coin / 100}€</span>
+                                    <span key={index} className="bg-white  border border-dark-pink p-2 text-xs mx-1 my-1">{coin.count} x {coin.coin}</span>
                                 )
                             }
                         })
@@ -99,7 +102,7 @@ export function Calc() {
                     <a href="/">
                         <div className="bg-white text-darker-pink p-2 rounded-full border border-darker-pink">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-building-store"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l18 0" /><path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" /><path d="M5 21l0 -10.15" /><path d="M19 21l0 -10.15" /><path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" /></svg>
-                            
+
                         </div>
                     </a>
                 </div>
