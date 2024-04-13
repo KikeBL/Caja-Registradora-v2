@@ -1,8 +1,102 @@
-import { useProductStore } from "../store/productStore"
+import { useProductStore } from "../store/productStore";
+import { saveSell } from "../scripts/notion";
+import { db, desc, Sells } from 'astro:db';
+
+interface Product {
+    id: string;
+    producto: string;
+    cover: string | undefined;
+    rename: string;
+    price: number;
+    allergens: string[];
+    cantidad: number;
+}
+
+const result = await db.select({ id: Sells.id }).from(Sells).orderBy(desc(Sells.id)).limit(1);
 
 export function Menu() {
-    const total = useProductStore((state:any) => state.total)
-    const resetHandle = useProductStore((state: any) => state.reset)
+    const total = useProductStore((state: any) => state.total)
+    
+    const resetHandle = async () => {
+
+        console.log("reset")
+        const cart: Product[] = useProductStore((state: any) => state.cart)
+        let date = new Date()
+
+        let i = result[0].id + 1
+        await db.insert(Sells).values({ id: 6 });
+
+        const data = JSON.stringify(cart)
+        const total = useProductStore((state: any) => state.total)
+
+
+        const page = {
+            "Concepto": {
+                type: "title",
+                title: [
+                    {
+                        type: "text",
+                        text: {
+                            content: "Venta 2023" + i.toString().padStart(4, "0")
+                        }
+                    }
+                ]
+            },
+            Tipo: {
+                type: "select",
+                select: {
+                    name: "Venta"
+                }
+            },
+            Cantidad: {
+                type: "number",
+                number: parseFloat(total)
+            },
+            Fecha: {
+                type: "date",
+                date: {
+                    start: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + ('0' + date.getDate()).slice(-2)
+                }
+            },
+            Contexto: {
+                type: "multi_select",
+                multi_select: [
+                    {
+                        name: "Mercadillo"
+                    }
+                ]
+
+            },
+            "Producto no registrado": {
+                type: "rich_text",
+                rich_text: [
+                    {
+                        type: "text",
+                        text: {
+                            content: cart.map(function (item) {
+                                return (item.cantidad + " x " + item.producto + " ").padEnd(35, "-") + " " + item.price + "€ | " + (item.price * item.cantidad).toFixed(2) + "€ \n"
+                            }).join('')
+                        }
+                    },
+                    {
+                        type: "text",
+                        text: {
+                            content: "---------------------------------------------- \n ================================== \n\n"
+                        }
+                    },
+                    {
+                        type: "text",
+                        text: {
+                            content: "Total: ".padEnd(43, "-") + " " + total + "€"
+                        }
+                    }
+                ]
+            },
+        }
+
+        await saveSell(JSON.stringify(page))
+        useProductStore((state: any) => state.reset)
+    }
 
     return (
         <nav className="flex w-full text-dark-pink pt-4 z-20">
