@@ -48,8 +48,8 @@ export function Tiquet() {
         emailjs
             .send('service_nejmr0b', 'template_xx9fzg3',
                 {
-                    to: emailCliente,
-                    to_name: nombreCliente,
+                    to: "enriquebarrerol@gmail.com",
+                    to_name: "Dulces Remedios",
                     message: `${getMessage()}`,
                     reply_to: emailCliente,
                 }, {
@@ -58,6 +58,7 @@ export function Tiquet() {
             .then(
                 (response) => {
                     console.log('SUCCESS!', response.status, response.text);
+                    showMailHandle()
                 },
                 (error) => {
                     console.log('FAILED...', error.text)
@@ -90,7 +91,7 @@ export function Tiquet() {
                 </div>
                 <div className="flex flex-col">
                     <div className="text-darker-pink p-2 rounded-full border border-darker-pink">
-                        <svg onClick={showMailHandle} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+                        <svg onClick={sendMailHandle} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
                     </div>
 
                 </div>
@@ -104,9 +105,7 @@ export function Tiquet() {
             </div>
             {showMail && (
                 <div className="flex flex-col">
-                    <input type="text" name="name" placeholder="Nombre" className="border border-darker-pink rounded-lg p-2 mx-12 my-4" onChange={(event) => onNameChange(event.target.value)} />
-                    <input type="email" name="email" placeholder="Email" className="border border-darker-pink rounded-lg p-2 mx-12 my-4" onChange={(event) => onEmailChange(event.target.value)} />
-                    <button className="bg-darker-pink text-white rounded-lg p-2 mx-24" onClick={sendMailHandle}>Enviar</button>
+                    <span className="text-lg">Email enviado correctamente</span>
                 </div>
             )}
         </div>
