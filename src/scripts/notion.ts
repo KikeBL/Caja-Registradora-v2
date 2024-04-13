@@ -33,7 +33,7 @@ export async function getAllProducts(): Promise<product[]> {
                 producto: page.properties.Producto.title[0].plain_text,
                 cover: page.cover ? (page.cover.external ? page.cover.external.url : page.cover.file.url) : null,
                 rename: page.properties.Rename.rich_text[0] ? page.properties.Rename.rich_text[0].plain_text : "",
-                price: page.properties["PVP Mercadillo"] ? page.properties["PVP Mercadillo"].number : "Consultar",
+                price: page.properties["PVP/Porcion"] ? page.properties["PVP/Porcion"].number : "Consultar",
                 allergens: page.properties.Allergens.multi_select.map((x: any) => { return x.name }),
                 cantidad: 0
             };
